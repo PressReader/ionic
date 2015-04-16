@@ -27,7 +27,7 @@
     "angular"
   ],
   "license": "MIT",
-  "private": false,
+  "private": true,
   "ignore": [
     "**/.*",
     "CONTRIBUTING.md",
