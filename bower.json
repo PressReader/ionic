@@ -33,6 +33,7 @@
     "CONTRIBUTING.md",
     "Gruntfile.js",
     "component.json",
+    "circle.yml",
     "config",
     "examples",
     "package.json",
@@ -40,12 +41,9 @@
     "release/js/angular-ui",
     "scripts",
     "test",
-    "js/controllers",
-    "js/ext",
-    "js/utils",
-    "js/views",
-    "js/_license.js",
-    "js/ionic.js"
+    "js",
+    "demos",
+    "scss"
   ],
   "dependencies": {
     "angular": "1.3.13",
