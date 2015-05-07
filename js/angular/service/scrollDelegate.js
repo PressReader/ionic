@@ -65,6 +65,14 @@ IonicModule
    * @description Tell the scrollView to recalculate the size of its container.
    */
   'resize',
+
+  /**
+   * @ngdoc method
+   * @name $ionicScrollDelegate#resizeImmediate
+   * @description Tell the scrollView to recalculate the size of its container immediately.
+   */
+  'prResizeImmediate',
+
   /**
    * @ngdoc method
    * @name $ionicScrollDelegate#scrollTop

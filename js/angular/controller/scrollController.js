@@ -101,13 +101,12 @@ function($scope,
   };
 
   self.resize = function() {
-    return $timeout(resize, 0, false).then(function() {
-      $element && $element.triggerHandler('scroll-resize');
-    });
+    return $timeout(resize, 0, false).then(self.prResizeImmediate);
   };
 
-  self.prExtensions = self.prExtensions || {};
-  self.prExtensions.resizeImmediate = self.prExtensions.resizeImmediate || function resizeImmediate() { $element && $element.triggerHandler('scroll-resize'); };
+  self.prResizeImmediate = function resizeImmediate() {
+    $element && $element.triggerHandler('scroll-resize');
+  };
 
   self.scrollTop = function(shouldAnimate) {
     self.resize().then(function() {
