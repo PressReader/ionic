@@ -106,6 +106,9 @@ function($scope,
     });
   };
 
+  self.prExtensions = self.prExtensions || {};
+  self.prExtensions.resizeImmediate = self.prExtensions.resizeImmediate || function resizeImmediate() { $element && $element.triggerHandler('scroll-resize'); };
+
   self.scrollTop = function(shouldAnimate) {
     self.resize().then(function() {
       scrollView.scrollTo(0, 0, !!shouldAnimate);
