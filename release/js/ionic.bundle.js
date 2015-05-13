@@ -45705,6 +45705,13 @@ IonicModule
 
   /**
    * @ngdoc method
+   * @name $ionicScrollDelegate#prRerender
+   * @description Tell the scrollView to re-render it's visible area immediately.
+   */
+   'prRerender',
+
+  /**
+   * @ngdoc method
    * @name $ionicScrollDelegate#scrollTop
    * @param {boolean=} shouldAnimate Whether the scroll should animate.
    */
@@ -48925,6 +48932,10 @@ function($scope,
     $element && $element.triggerHandler('scroll-resize');
   };
 
+  self.prRerender = function reRender() {
+    $element && $element.triggerHandler('scroll-rerender');
+  };
+
   self.scrollTop = function(shouldAnimate) {
     self.resize().then(function() {
       scrollView.scrollTo(0, 0, !!shouldAnimate);
@@ -50411,6 +50422,7 @@ function CollectionRepeatDirective($ionicCollectionManager, $parse, $window, $$r
 
     // Dimensions are refreshed on resize or data change.
     scrollCtrl.$element.on('scroll-resize', refreshDimensions);
+    scrollCtrl.$element.on('scroll-rerender', forceRerender);
 
     angular.element($window).on('resize', onResize);
     var unlistenToExposeAside = $rootScope.$on('$ionicExposeAside', ionic.animationFrameThrottle(function() {
@@ -50442,6 +50454,7 @@ function CollectionRepeatDirective($ionicCollectionManager, $parse, $window, $$r
       angular.element($window).off('resize', onResize);
       unlistenToExposeAside();
       scrollCtrl.$element && scrollCtrl.$element.off('scroll-resize', refreshDimensions);
+      scrollCtrl.$element && scrollCtrl.$element.off('scroll-rerender', forceRerender);
 
       computedStyleNode && computedStyleNode.parentNode &&
         computedStyleNode.parentNode.removeChild(computedStyleNode);
@@ -50546,6 +50559,10 @@ function CollectionRepeatDirective($ionicCollectionManager, $parse, $window, $$r
       } else {
         widthData.computed = true;
       }
+    }
+
+    function forceRerender() {
+      getRepeatManager().forceRerender();
     }
 
     function refreshDimensions() {
@@ -50854,6 +50871,11 @@ function RepeatManagerFactory($rootScope, $window, $$rAF) {
       scrollView.resize();
 
       (view.onDestroy || angular.noop)();
+    };
+
+    this.forceRerender = function () {
+      (view.onRefreshLayout || angular.noop)();
+      render(true);
     };
 
     function forceRerender() {
