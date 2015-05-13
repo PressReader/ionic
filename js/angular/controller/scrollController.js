@@ -108,6 +108,10 @@ function($scope,
     $element && $element.triggerHandler('scroll-resize');
   };
 
+  self.prRerender = function reRender() {
+    $element && $element.triggerHandler('scroll-rerender');
+  };
+
   self.scrollTop = function(shouldAnimate) {
     self.resize().then(function() {
       scrollView.scrollTo(0, 0, !!shouldAnimate);

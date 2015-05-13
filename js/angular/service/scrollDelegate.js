@@ -75,6 +75,13 @@ IonicModule
 
   /**
    * @ngdoc method
+   * @name $ionicScrollDelegate#prRerender
+   * @description Tell the scrollView to re-render it's visible area immediately.
+   */
+   'prRerender',
+
+  /**
+   * @ngdoc method
    * @name $ionicScrollDelegate#scrollTop
    * @param {boolean=} shouldAnimate Whether the scroll should animate.
    */
