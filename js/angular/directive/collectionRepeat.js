@@ -191,7 +191,7 @@ function CollectionRepeatDirective($ionicCollectionManager, $parse, $window, $$r
 
       repeatManager && repeatManager.destroy();
       repeatManager = null;
-      selfCtrl.getEstimatedPrimaryPos = selfCtrl.getEstimatedSecondaryPos = null;
+      selfCtrl.getPrimaryPos = selfCtrl.getSecondaryPos = null;
     });
 
     function makeChangeValidator() {
